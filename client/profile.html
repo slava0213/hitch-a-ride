@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Профиль</title>
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header><h1>Профиль пользователя</h1></header>
+
+  <nav>
+    <ul>
+      <li><a href="index.html">Поездки</a></li>
+      <li><a href="create-trip.html">Создать поездку</a></li>
+      <li><a href="search.html">Поиск</a></li>
+      <li><a href="chat.html">Чат</a></li>
+      <li><a href="profile.html" class="active">Профиль</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <!-- ── Мои данные ── -->
+    <form id="profile-form">
+      <h2>Мои данные</h2>
+      <div id="profile-error" class="message-error" style="display:none"></div>
+      <div id="profile-success" class="message-success" style="display:none">Сохранено!</div>
+
+      <label>Имя</label>
+      <input type="text" id="p-name" required />
+
+      <label>Email</label>
+      <input type="email" id="p-email" disabled />
+
+      <label>Телефон</label>
+      <input type="tel" id="p-phone" />
+
+      <label>О себе</label>
+      <textarea id="p-bio" rows="3"></textarea>
+
+      <button type="submit">Сохранить</button>
+    </form>
+
+    <!-- ── Заявки на мои поездки (как водитель) ── -->
+    <h2 style="margin-top:2.5rem">📥 Заявки на мои поездки</h2>
+    <div id="incoming-requests"><p class="empty">Загрузка...</p></div>
+
+    <!-- ── Мои заявки (как пассажир) ── -->
+    <h2 style="margin-top:2.5rem">✋ Мои заявки</h2>
+    <div id="my-requests"><p class="empty">Загрузка...</p></div>
+
+    <!-- ── Отзывы о водителях ── -->
+    <h2 style="margin-top:2.5rem">⭐ Отзывы о водителях</h2>
+    <div id="reviews-list"><p class="empty">Загрузка...</p></div>
+  </main>
+
+  <footer>© 2026 Сервис попутчиков</footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/profile.js"></script>
+  <!-- Модальное окно отзыва -->
+<div id="review-modal" class="modal-overlay" style="display:none">
+  <div class="modal">
+    <h2>Отзыв о водителе</h2>
+    <p>Водитель: <strong id="review-driver-name">—</strong></p>
+
+    <div id="review-stars" class="stars">
+      <span onclick="setRating(1)">☆</span>
+      <span onclick="setRating(2)">☆</span>
+      <span onclick="setRating(3)">☆</span>
+      <span onclick="setRating(4)">☆</span>
+      <span onclick="setRating(5)">☆</span>
+    </div>
+
+    <label>Комментарий (необязательно)</label>
+    <textarea id="review-text" rows="3" placeholder="Как прошла поездка?"></textarea>
+
+    <div id="review-error" class="message-error" style="display:none"></div>
+
+    <div class="modal-actions">
+      <button class="btn btn-secondary" onclick="closeReviewModal()">Отмена</button>
+      <button class="btn" onclick="submitReview()">Отправить отзыв</button>
+    </div>
+  </div>
+</div>
+</body>
+</html>

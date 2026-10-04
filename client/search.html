@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Поиск поездок</title>
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header><h1>Поиск поездок</h1></header>
+
+  <nav>
+    <ul>
+      <li><a href="index.html">Поездки</a></li>
+      <li><a href="create-trip.html">Создать поездку</a></li>
+      <li><a href="search.html" class="active">Поиск</a></li>
+      <li><a href="chat.html">Чат</a></li>
+      <li><a href="profile.html">Профиль</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <form id="search-form">
+      <div class="filters">
+        <div>
+          <label>Откуда</label>
+          <input type="text" id="s-from" />
+        </div>
+        <div>
+          <label>Куда</label>
+          <input type="text" id="s-to" />
+        </div>
+        <div>
+          <label>Дата</label>
+          <input type="date" id="s-date" />
+        </div>
+        <button type="submit">Найти</button>
+      </div>
+    </form>
+
+    <div id="search-results"></div>
+  </main>
+
+  <footer>© 2026 Сервис попутчиков</footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/search.js"></script>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Попутчики — Поездки</title>
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header>
+    <h1>Сервис поиска попутчиков</h1>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="index.html" class="active">Поездки</a></li>
+      <li><a href="create-trip.html">Создать поездку</a></li>
+      <li><a href="search.html">Поиск</a></li>
+      <li><a href="chat.html">Чат</a></li>
+      <li><a href="profile.html">Профиль</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <!-- ── HERO ── -->
+    <section class="hero">
+      <div class="hero-text">
+        <h2>Путешествуйте вместе — дешевле и веселее</h2>
+        <p>Найдите попутчиков по всей России. Делите расходы, знакомьтесь с новыми людьми и добирайтесь куда угодно с комфортом.</p>
+        <div class="hero-actions">
+          <a class="btn btn-large" href="search.html">🔍 Найти поездку</a>
+          <a class="btn btn-secondary btn-large" href="create-trip.html">➕ Предложить свою</a>
+        </div>
+      </div>
+      <div class="hero-image">🚗</div>
+    </section>
+
+    <!-- ── ПРЕИМУЩЕСТВА ── -->
+    <section class="features">
+      <div class="feature">
+        <div class="feature-icon">💰</div>
+        <h3>Дешевле</h3>
+        <p>Делите расходы на бензин, платные дороги и парковку</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">🤝</div>
+        <h3>Безопаснее</h3>
+        <p>Отзывы, рейтинг водителей и подтверждённые профили</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">💬</div>
+        <h3>Удобнее</h3>
+        <p>Общайтесь в чате, договаривайтесь о деталях</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">🌍</div>
+        <h3>Куда угодно</h3>
+        <p>Тысячи маршрутов — от соседнего города до другого конца страны</p>
+      </div>
+    </section>
+
+    <!-- ── СТАТИСТИКА ── -->
+    <section class="stats" id="stats">
+      <div class="stat">
+        <div class="stat-value" id="stat-trips">—</div>
+        <div class="stat-label">Поездок</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value" id="stat-users">—</div>
+        <div class="stat-label">Пользователей</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value" id="stat-cities">—</div>
+        <div class="stat-label">Городов</div>
+      </div>
+    </section>
+
+    <!-- ── СПИСОК ПОЕЗДОК ── -->
+    <section>
+      <h2>Доступные поездки</h2>
+      <div id="trips-list"><p class="empty">Загрузка...</p></div>
+    </section>
+  </main>
+
+  <footer>© 2026 Сервис попутчиков. Данные хранятся на сервере.</footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/trips.js"></script>
+  <script>loadTrips(); loadStats();</script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Создать поездку</title>
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header><h1>Создать поездку</h1></header>
+
+  <nav>
+    <ul>
+      <li><a href="index.html">Поездки</a></li>
+      <li><a href="create-trip.html" class="active">Создать поездку</a></li>
+      <li><a href="search.html">Поиск</a></li>
+      <li><a href="chat.html">Чат</a></li>
+      <li><a href="profile.html">Профиль</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <form id="trip-form">
+      <div id="error" class="message-error" style="display:none"></div>
+
+      <label>Откуда</label>
+      <input type="text" id="from_city" required />
+
+      <label>Куда</label>
+      <input type="text" id="to_city" required />
+
+      <label>Дата</label>
+      <input type="date" id="date" required />
+
+      <label>Время</label>
+      <input type="time" id="time" required />
+
+      <label>Свободных мест</label>
+      <input type="number" id="seats" min="1" max="8" value="3" required />
+
+      <label>Цена, ₽</label>
+      <input type="number" id="price" min="0" value="1000" required />
+
+      <label>Описание</label>
+      <textarea id="description" rows="3"></textarea>
+
+      <button type="submit">Опубликовать</button>
+    </form>
+  </main>
+
+  <footer>© 2026 Сервис попутчиков</footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script>
+    (async () => {
+      const me = await getCurrentUser();
+      if (!me) { location.href = 'login.html'; return; }
+
+      document.getElementById('trip-form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const errBox = document.getElementById('error');
+        errBox.style.display = 'none';
+
+        try {
+          await Api.post('/trips', {
+            from_city:   document.getElementById('from_city').value.trim(),
+            to_city:     document.getElementById('to_city').value.trim(),
+            date:        document.getElementById('date').value,
+            time:        document.getElementById('time').value,
+            seats:       Number(document.getElementById('seats').value),
+            price:       Number(document.getElementById('price').value),
+            description: document.getElementById('description').value.trim()
+          });
+          location.href = 'index.html';
+        } catch (err) {
+          errBox.textContent = err.message;
+          errBox.style.display = 'block';
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

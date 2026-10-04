@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Регистрация</title>
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header><h1>Регистрация</h1></header>
+
+  <nav>
+    <ul>
+      <li><a href="index.html">Поездки</a></li>
+      <li><a href="create-trip.html">Создать поездку</a></li>
+      <li><a href="search.html">Поиск</a></li>
+      <li><a href="chat.html">Чат</a></li>
+      <li><a href="profile.html">Профиль</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <form id="register-form">
+      <h2>Создать аккаунт</h2>
+      <div id="error" class="message-error" style="display:none"></div>
+
+      <label>Имя</label>
+      <input type="text" id="name" required />
+
+      <label>Email</label>
+      <input type="email" id="email" required />
+
+      <label>Пароль (минимум 6 символов)</label>
+      <input type="password" id="password" minlength="6" required />
+
+      <button type="submit">Зарегистрироваться</button>
+      <p style="margin-top:1rem; text-align:center; color:var(--muted);">
+        Уже есть аккаунт? <a href="login.html">Войти</a>
+      </p>
+    </form>
+  </main>
+
+  <footer>© 2026 Сервис попутчиков</footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script>
+    document.getElementById('register-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const errBox = document.getElementById('error');
+      errBox.style.display = 'none';
+
+      try {
+        await Api.post('/register', {
+          name:     document.getElementById('name').value.trim(),
+          email:    document.getElementById('email').value.trim(),
+          password: document.getElementById('password').value
+        });
+        location.href = 'index.html';
+      } catch (err) {
+        errBox.textContent = err.message;
+        errBox.style.display = 'block';
+      }
+    });
+  </script>
+</body>
+</html>
