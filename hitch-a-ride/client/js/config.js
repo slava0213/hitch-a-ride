@@ -3,9 +3,9 @@
 //  Они автоматически появятся в бегущей строке и в подвале всех страниц.
 // ═══════════════════════════════════════════════
 window.SITE = {
-  name:     'Ваше Имя',                         // ← впишите своё имя
+  name:     'Слава',                         // ← впишите своё имя
   role:     'Разработчик проекта',
-  telegram: '@your_telegram',                   // ← ваш Telegram
+  telegram: '@ech0_m00n',                   // ← ваш Telegram
   email:    'your@email.com',                   // ← ваш e-mail
   phone:    '+7 (900) 000-00-00',               // ← ваш телефон
   github:   'https://github.com/slava0213'      // ← ваш GitHub
